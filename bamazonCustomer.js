@@ -94,11 +94,13 @@ function addItem(item, cat, price, quant) {
     if (result.length == 0) {
       connection.query('INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)', [item.toLowerCase(), cat.toLowerCase(), parseInt(price), parseInt(quant)], function(error) {
         if (error) throw error;
+        console.log('Item successfully added');
         connection.end();
       })
     } else {
       connection.query('UPDATE products SET stock_quantity = ? WHERE product_name = ? AND department_name = ? AND price = ?', [parseInt(quant), item.toLowerCase(), cat.toLowerCase(), parseInt(price)], function(error) {
         if (error) throw error;
+        console.log('Item successfully added');
         connection.end();
       })
     }
